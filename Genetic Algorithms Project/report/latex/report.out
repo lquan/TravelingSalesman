@@ -1,0 +1,45 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}
+\BOOKMARK [1][-]{section.2}{Traveling salesman problem}{}
+\BOOKMARK [2][-]{subsection.2.1}{Description}{section.2}
+\BOOKMARK [2][-]{subsection.2.2}{TSP representation}{section.2}
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Adjacency representation}{subsection.2.2}
+\BOOKMARK [3][-]{subsubsection.2.2.2}{Ordinal representation}{subsection.2.2}
+\BOOKMARK [3][-]{subsubsection.2.2.3}{Path representation}{subsection.2.2}
+\BOOKMARK [2][-]{subsection.2.3}{Tasks}{section.2}
+\BOOKMARK [2][-]{subsection.2.4}{Benchmark problems}{section.2}
+\BOOKMARK [1][-]{section.3}{Experiments}{}
+\BOOKMARK [2][-]{subsection.3.1}{Crossover operators}{section.3}
+\BOOKMARK [3][-]{subsubsection.3.1.1}{Alternating edge crossover}{subsection.3.1}
+\BOOKMARK [3][-]{subsubsection.3.1.2}{Partially matched crossover}{subsection.3.1}
+\BOOKMARK [3][-]{subsubsection.3.1.3}{Order crossover}{subsection.3.1}
+\BOOKMARK [3][-]{subsubsection.3.1.4}{Cycle crossover}{subsection.3.1}
+\BOOKMARK [3][-]{subsubsection.3.1.5}{\(Enhanced\) edge recombination crossover}{subsection.3.1}
+\BOOKMARK [2][-]{subsection.3.2}{Mutation operators}{section.3}
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Simple inversion mutation}{subsection.3.2}
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Inversion mutation}{subsection.3.2}
+\BOOKMARK [3][-]{subsubsection.3.2.3}{Insertion mutation}{subsection.3.2}
+\BOOKMARK [3][-]{subsubsection.3.2.4}{Exchange mutation}{subsection.3.2}
+\BOOKMARK [2][-]{subsection.3.3}{Selection operators}{section.3}
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Stochastic uniform sampling}{subsection.3.3}
+\BOOKMARK [3][-]{subsubsection.3.3.2}{Roulette wheel selection}{subsection.3.3}
+\BOOKMARK [3][-]{subsubsection.3.3.3}{Tournament selection}{subsection.3.3}
+\BOOKMARK [2][-]{subsection.3.4}{Comparison with other techniques}{section.3}
+\BOOKMARK [3][-]{subsubsection.3.4.1}{Nearest neighbor heuristic}{subsection.3.4}
+\BOOKMARK [3][-]{subsubsection.3.4.2}{Simulated annealing}{subsection.3.4}
+\BOOKMARK [1][-]{section.4}{Conclusion}{}
+\BOOKMARK [1][-]{appendix.A}{Matlab code}{}
+\BOOKMARK [2][-]{subsection.A.1}{Crossover operators}{appendix.A}
+\BOOKMARK [3][-]{subsubsection.A.1.1}{PMX}{subsection.A.1}
+\BOOKMARK [3][-]{subsubsection.A.1.2}{OX}{subsection.A.1}
+\BOOKMARK [3][-]{subsubsection.A.1.3}{CX}{subsection.A.1}
+\BOOKMARK [3][-]{subsubsection.A.1.4}{\(E\)ERX}{subsection.A.1}
+\BOOKMARK [2][-]{subsection.A.2}{Mutation operators}{appendix.A}
+\BOOKMARK [3][-]{subsubsection.A.2.1}{Simple inversion}{subsection.A.2}
+\BOOKMARK [3][-]{subsubsection.A.2.2}{Inversion}{subsection.A.2}
+\BOOKMARK [3][-]{subsubsection.A.2.3}{Insertion}{subsection.A.2}
+\BOOKMARK [3][-]{subsubsection.A.2.4}{Exchange}{subsection.A.2}
+\BOOKMARK [2][-]{subsection.A.3}{Selection operators}{appendix.A}
+\BOOKMARK [3][-]{subsubsection.A.3.1}{Tournament selection}{subsection.A.3}
+\BOOKMARK [2][-]{subsection.A.4}{Other algorithms}{appendix.A}
+\BOOKMARK [3][-]{subsubsection.A.4.1}{Objective function}{subsection.A.4}
+\BOOKMARK [3][-]{subsubsection.A.4.2}{Nearest neighbor heuristic}{subsection.A.4}

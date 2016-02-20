@@ -1,0 +1,74 @@
+\select@language {english}
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}
+\contentsline {section}{\numberline {2}Traveling salesman problem}{3}{section.2}
+\contentsline {subsection}{\numberline {2.1}Description}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}TSP representation}{3}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}Adjacency representation}{3}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}Ordinal representation}{3}{subsubsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.3}Path representation}{3}{subsubsection.2.2.3}
+\contentsline {subsection}{\numberline {2.3}Tasks}{4}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Benchmark problems}{4}{subsection.2.4}
+\contentsline {section}{\numberline {3}Experiments}{5}{section.3}
+\contentsline {subsection}{\numberline {3.1}Crossover operators}{5}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Alternating edge crossover}{5}{subsubsection.3.1.1}
+\contentsline {paragraph}{Description}{5}{section*.7}
+\contentsline {paragraph}{Results}{5}{section*.8}
+\contentsline {subsubsection}{\numberline {3.1.2}Partially matched crossover}{5}{subsubsection.3.1.2}
+\contentsline {paragraph}{Description}{5}{section*.9}
+\contentsline {paragraph}{Results}{8}{section*.10}
+\contentsline {subsubsection}{\numberline {3.1.3}Order crossover}{8}{subsubsection.3.1.3}
+\contentsline {paragraph}{Description}{8}{section*.11}
+\contentsline {paragraph}{Results}{8}{section*.12}
+\contentsline {subsubsection}{\numberline {3.1.4}Cycle crossover}{8}{subsubsection.3.1.4}
+\contentsline {paragraph}{Description}{8}{section*.13}
+\contentsline {paragraph}{Results}{8}{section*.14}
+\contentsline {subsubsection}{\numberline {3.1.5}(Enhanced) edge recombination crossover}{8}{subsubsection.3.1.5}
+\contentsline {paragraph}{Description}{8}{section*.15}
+\contentsline {paragraph}{Results}{9}{section*.16}
+\contentsline {subsection}{\numberline {3.2}Mutation operators}{9}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Simple inversion mutation}{9}{subsubsection.3.2.1}
+\contentsline {paragraph}{Description}{9}{section*.18}
+\contentsline {paragraph}{Results}{9}{section*.19}
+\contentsline {subsubsection}{\numberline {3.2.2}Inversion mutation}{9}{subsubsection.3.2.2}
+\contentsline {paragraph}{Description}{9}{section*.20}
+\contentsline {paragraph}{Results}{9}{section*.21}
+\contentsline {subsubsection}{\numberline {3.2.3}Insertion mutation}{11}{subsubsection.3.2.3}
+\contentsline {paragraph}{Description}{11}{section*.22}
+\contentsline {paragraph}{Results}{11}{section*.23}
+\contentsline {subsubsection}{\numberline {3.2.4}Exchange mutation}{11}{subsubsection.3.2.4}
+\contentsline {paragraph}{Description}{11}{section*.24}
+\contentsline {paragraph}{Results}{11}{section*.25}
+\contentsline {subsection}{\numberline {3.3}Selection operators}{11}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}Stochastic uniform sampling}{11}{subsubsection.3.3.1}
+\contentsline {paragraph}{Description}{11}{section*.26}
+\contentsline {paragraph}{Results}{11}{section*.28}
+\contentsline {subsubsection}{\numberline {3.3.2}Roulette wheel selection}{11}{subsubsection.3.3.2}
+\contentsline {paragraph}{Description}{11}{section*.29}
+\contentsline {paragraph}{Results}{13}{section*.30}
+\contentsline {subsubsection}{\numberline {3.3.3}Tournament selection}{13}{subsubsection.3.3.3}
+\contentsline {paragraph}{Description}{13}{section*.31}
+\contentsline {paragraph}{Results}{13}{section*.32}
+\contentsline {subsection}{\numberline {3.4}Comparison with other techniques}{13}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}Nearest neighbor heuristic}{13}{subsubsection.3.4.1}
+\contentsline {paragraph}{Description}{13}{section*.34}
+\contentsline {paragraph}{Results}{13}{section*.35}
+\contentsline {subsubsection}{\numberline {3.4.2}Simulated annealing}{13}{subsubsection.3.4.2}
+\contentsline {paragraph}{Description}{13}{section*.37}
+\contentsline {paragraph}{Results}{15}{section*.38}
+\contentsline {section}{\numberline {4}Conclusion}{16}{section.4}
+\contentsline {section}{\numberline {A}\textsc {Matlab} code}{17}{appendix.A}
+\contentsline {subsection}{\numberline {A.1}Crossover operators}{17}{subsection.A.1}
+\contentsline {subsubsection}{\numberline {A.1.1}PMX}{17}{subsubsection.A.1.1}
+\contentsline {subsubsection}{\numberline {A.1.2}OX}{17}{subsubsection.A.1.2}
+\contentsline {subsubsection}{\numberline {A.1.3}CX}{18}{subsubsection.A.1.3}
+\contentsline {subsubsection}{\numberline {A.1.4}(E)ERX}{18}{subsubsection.A.1.4}
+\contentsline {subsection}{\numberline {A.2}Mutation operators}{20}{subsection.A.2}
+\contentsline {subsubsection}{\numberline {A.2.1}Simple inversion}{20}{subsubsection.A.2.1}
+\contentsline {subsubsection}{\numberline {A.2.2}Inversion}{20}{subsubsection.A.2.2}
+\contentsline {subsubsection}{\numberline {A.2.3}Insertion}{21}{subsubsection.A.2.3}
+\contentsline {subsubsection}{\numberline {A.2.4}Exchange}{21}{subsubsection.A.2.4}
+\contentsline {subsection}{\numberline {A.3}Selection operators}{22}{subsection.A.3}
+\contentsline {subsubsection}{\numberline {A.3.1}Tournament selection}{22}{subsubsection.A.3.1}
+\contentsline {subsection}{\numberline {A.4}Other algorithms}{22}{subsection.A.4}
+\contentsline {subsubsection}{\numberline {A.4.1}Objective function}{22}{subsubsection.A.4.1}
+\contentsline {subsubsection}{\numberline {A.4.2}Nearest neighbor heuristic}{22}{subsubsection.A.4.2}

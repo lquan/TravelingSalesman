@@ -1,0 +1,25 @@
+\begin{sidewaystable}[hbpt]\centering
+\footnotesize{
+\begin{tabular} {l l l  l l l l ll l l l l l l l}
+\toprule
+&& \multicolumn{2}{c}{\dataset{belgiumtour}} && \multicolumn{2}{c}{\dataset{xqf131}} && \multicolumn{2}{c}{\dataset{bcl380}}  & &\multicolumn{2}{c}{\dataset{xql662}} && \multicolumn{2}{c}{\dataset{rbx711}} \\  \cmidrule{3-4} \cmidrule{6-7} \cmidrule{9-10} \cmidrule{12-13}   \cmidrule{15-16}  
+Run & & Time (s) & Distance & & Time (s) & Distance && Time (s) & Distance && Time (s) & Distance && Time (s) & Distance \\ \midrule
+1   &&  7.0 & 1090 && 8.7 & 2462  &&  16.0 & 18317  && 30.6 & 39367 && 35.2 & 48260 \\
+2   &&  7.1 & 1226 && 8.7 & 2242  && 16.5 & 18581 && 31.3 & 39728 &&   34.2 & 50096    \\
+3   &&  7.0 & 984 && 8.6 & 2535 &&  16.6 & 18315 &&  32.1    & 40302  && 288.8   & 50821      \\
+4   &&  7.1 & 1238 && 8.5 & 2404  && 16.6     &  18373   && 32.7  & 41374 && 289.7  & 50139   \\
+5   &&  7.2 & 910 && 8.6 & 2232  && 16.7 &  18244    && 29.6 & 39863  &&  33.5    & 49296    \\ \midrule\addlinespace
+Worst  &&  7.2 & 1238 (?) && 8.7 & 2535 () && 16.7  & 18581  () &&  32.7   & 41374  () &&  35.2  & 50821  ()  \\
+Average&&  7.1 & 1090 (?) && 8.6 & 2375 () &&  16.5  &  18366 () &&  32.3 & 40127   () && 34.3  & 49722  ()    \\
+Best   && 7.0 & 910 (?) && 8.5 & 2232 ()  &&  16.0  &  18244 ()&&  29.6 & 39367   () && 33.3  &  48260  ()     \\
+\bottomrule
+\end{tabular}}
+\caption{TSP performance of path representation with PMX. }
+\label{tab:pmx_performance}
+\end{sidewaystable}
+% 
+% \dataset{xqf131}  && 564\\
+% \dataset{bcl380}  && 1621\\
+% \dataset{xql662}  && 2513\\
+% \dataset{rbx711}  && 3115\\
+% \dataset{belgiumtour}  && ?\\

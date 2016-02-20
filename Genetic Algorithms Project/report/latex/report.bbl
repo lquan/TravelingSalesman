@@ -1,0 +1,38 @@
+\begin{thebibliography}{1}
+
+\bibitem{affenzeller2009genetic}
+M.~Affenzeller and S.~Winkler.
+\newblock {\em Genetic algorithms and genetic programming: modern concepts and
+  practical applications}.
+\newblock Numerical insights. CRC Press, 2009.
+
+\bibitem{multiple_tsp}
+T.~Bektas.
+\newblock The multiple traveling salesman problem: an overview of formulations
+  and solution procedures.
+\newblock {\em Omega}, 34(3):209--219, June 2006.
+
+\bibitem{gutin2002traveling}
+G.~Gutin and A.~Punnen.
+\newblock {\em The traveling salesman problem and its variations}.
+\newblock Combinatorial optimization. Kluwer Academic Publishers, 2002.
+
+\bibitem{simulatedannealing}
+S.~Kirkpatrick, C.~D. Gelatt, and M.~P. Vecchi.
+\newblock Optimization by simulated annealing.
+\newblock {\em Science}, 220:671--680, 1983.
+
+\bibitem{Oliver}
+I.~M. Oliver, D.~J. Smith, and J.~R.~C. Holland.
+\newblock A study of permutation crossover operators on the traveling salesman
+  problem.
+\newblock In {\em Proceedings of the Second International Conference on Genetic
+  Algorithms on Genetic algorithms and their application}, pages 224--230,
+  Hillsdale, NJ, USA, 1987. L. Erlbaum Associates Inc.
+
+\bibitem{sawiki}
+{Wikipedia, the free encyclopedia}.
+\newblock Simulated annealing.
+\newblock \url{http://en.wikipedia.org/wiki/Simulated_annealing}.
+
+\end{thebibliography}

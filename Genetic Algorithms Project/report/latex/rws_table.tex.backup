@@ -1,0 +1,25 @@
+\begin{sidewaystable}[hbpt]\centering
+\footnotesize{
+\begin{tabular} {l l S  l l S l l S l l S l l S l}
+\toprule
+&& \multicolumn{2}{c}{\dataset{belgiumtour}} && \multicolumn{2}{c}{\dataset{xqf131}} && \multicolumn{2}{c}{\dataset{bcl380}}  & &\multicolumn{2}{c}{\dataset{xql662}} && \multicolumn{2}{c}{\dataset{rbx711}} \\  \cmidrule{3-4} \cmidrule{6-7} \cmidrule{9-10} \cmidrule{12-13}   \cmidrule{15-16}  
+Run & & {Time (s)} & Distance & & {Time (s)} & Distance && {Time (s)} & Distance && {Time (s)} & Distance && {Time (s)} & Distance \\ \midrule
+1   &&  7.2 & 951 && 7.3 & 2268  && 8.1 & 17675  && 8.7 & 39012 && 8.7 & 47856 \\
+2   &&  7.1 & 1048 && 7.3 & 2357  && 8.1 & 17451 && 8.6 & 39186 && 8.6 & 49247   \\
+3   &&  6.8 & 927 && 8.0 & 1979 &&  8.2 & 17274 && 8.5 & 38810 && 8.7 & 47947    \\
+4   &&  7.2 & 992 && 7.4& 2329  && 8.1  & 17879 && 8.6 & 40101 && 8.9 & 47876 \\
+5   &&  7.2 & 1097 &&  7.3 & 2306  && 8.1 & 16838 && 8.8 & 39240 && 8.8 & 47260  \\ \midrule\addlinespace
+Worst  &&  7.2 & 1097 (?) && 8.2 & 17879 () && 8.8 & 40101 () && 8.4 & 39335 () && 8.9 & 49247 ()  \\
+Average&&  7.1 & 927 (?) && 8.1 & 17423 () && 8.6 & 39270 () && 8.3 & 38960 () && 8.7 & 48037 ()    \\
+Best   && 6.8 & 927 (?) && 8.1 & 16838 ()  && 8.5 & 38810 ()&& 8.2 & 38486 () && 8.6 & 47260 ()     \\
+\bottomrule
+\end{tabular}}
+\caption{TSP performance of path representation with SUS selection (OX1 crossover and simple inversion mutation). }
+\label{tab:sus_performance}
+\end{sidewaystable}
+% 
+% \dataset{xqf131}  && 564\\
+% \dataset{bcl380}  && 1621\\
+% \dataset{xql662}  && 2513\\
+% \dataset{rbx711}  && 3115\\
+% \dataset{belgiumtour}  && ?\\

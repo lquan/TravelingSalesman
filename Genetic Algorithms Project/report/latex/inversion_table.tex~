@@ -1,0 +1,25 @@
+\begin{sidewaystable}[hbpt]\centering
+\footnotesize{
+\begin{tabular} {l l S  l l S l l S l l S l l S l}
+\toprule
+&& \multicolumn{2}{c}{\dataset{belgiumtour}} && \multicolumn{2}{c}{\dataset{xqf131}} && \multicolumn{2}{c}{\dataset{bcl380}}  & &\multicolumn{2}{c}{\dataset{xql662}} && \multicolumn{2}{c}{\dataset{rbx711}} \\  \cmidrule{3-4} \cmidrule{6-7} \cmidrule{9-10} \cmidrule{12-13}   \cmidrule{15-16}  
+Run & & {Time (s)} & Distance & & {Time (s)} & Distance && {Time (s)} & Distance && {Time (s)} & Distance && {Time (s)} & Distance \\ \midrule
+1   &&  7.0 & 1144 && 7.1 & 2454  &&  8.6 & 18562  && 9.2 & 42705 && 9.6 & 51351 \\
+2   &&  7.1 & 1200 && 7.0 & 2460  && 8.7 & 18396 && 9.0 & 42384 &&  9.2 & 52843   \\
+3   &&  6.9 & 1378 && 7.0 & 2523 &&  8.3 & 18950 &&  9.9   & 40665  && 9.5  & 52511     \\
+4   &&  7.1 & 1230 && 7.6 & 2484  && 8.7     & 18402   && 8.9 & 41613  && 9.4 & 51824  \\
+5   &&  7.7 & 1265 && 7.5 & 2434  && 8.1   & 18975       && 9.0 & 42298 && 9.3   &  52342  \\ \midrule\addlinespace
+Worst  &&  7.7 & 1378 (?) && 7.6 & 2523 () &&  8.7  &  18975  () && 9.9  & 42705 () &&  9.6 &  52843 ()  \\
+Average&&  7.2 & 1243 (?) && 7.2 & 2471 () &&8.5  & 18657  () && 9.2  &  41933 () && 9.4 &  52174 ()    \\
+Best   && 6.9 & 1144 (?) && 7.0 & 2434 ()  &&  8.1 & 18396  ()&&  8.9 &  40665 () &&  9.2 &  51351 ()     \\
+\bottomrule
+\end{tabular}}
+\caption{TSP performance of path representation with inversion mutation (and OX1 crossover).}
+\label{tab:inversion_performance}
+\end{sidewaystable}
+% 
+% \dataset{xqf131}  && 564\\
+% \dataset{bcl380}  && 1621\\
+% \dataset{xql662}  && 2513\\
+% \dataset{rbx711}  && 3115\\
+% \dataset{belgiumtour}  && ?\\

@@ -1,0 +1,73 @@
+\begin{sidewaystable}[hbpt]\centering
+\footnotesize{
+\begin{tabular} {ll Sl l Sl l Sl l Sl }
+\toprule
+&& \multicolumn{2}{c}{simple inversion} && \multicolumn{2}{c}{inversion} && \multicolumn{2}{c}{exchange}  & & \multicolumn{2}{c}{insertion} \\  \cmidrule{3-4} \cmidrule{6-7} \cmidrule{9-10} \cmidrule{12-13}  
+Run & & {Time (s)} & Distance & & {Time (s)} & Distance && {Time (s)} & Distance && {Time (s)} & Distance  \\ \midrule
+1   &&  8.4 & 17311 &&  8.9 & 17281  && 8.9  &  17955 && 8.8   & 17656 \\
+2   &&  8.7 & 17539 && 8.5 & 17691  &&  8.8 & 17701 &&  8.6   &  17150 \\
+3   &&  8.9 & 17259 && 8.8 & 16836 && 8.8  & 16596 &&   8.7   &  17396       \\
+4   &&  8.8 & 17565 && 8.8 & 17896   &&  8.8     & 16914    &&  8.7   &  17726   \\
+5   &&  8.8 & 17801 && 8.7   & 17530  && 8.7 &  16910    &&    8.6       &  17581   \\ \midrule\addlinespace
+Worst  &&  8.9 &  17801 (10.0) && 8.9  & 17896 (10.0) && 8.9 & 17896 (10.0) && 8.8     & 17726 (9.9)   \\
+Average&& 8.7  &  17495 (9.8) && 8.7 &  17447 (9.8) &&  8.8  &   17215 (9.6) && 8.7  & 17502 (9.8)     \\
+Best   &&    8.4 & 17259  (9.6) && 8.5 & 16386 (9.4)  && 8.7    & 16596 (9.2) && 8.6   &  17150 (9.6)    \\
+\bottomrule
+\end{tabular}}
+\caption{TSP performance of mutation operators for path representation with OX on \dataset{bcl380}.}
+\label{tab:mutation1_performance}
+\end{sidewaystable}
+
+
+
+\begin{sidewaystable}[hbpt]\centering
+\footnotesize{
+\begin{tabular} {ll Sl l Sl l Sl l Sl }
+\toprule
+&& \multicolumn{2}{c}{simple inversion} && \multicolumn{2}{c}{inversion} && \multicolumn{2}{c}{exchange}  & & \multicolumn{2}{c}{insertion} \\  \cmidrule{3-4} \cmidrule{6-7} \cmidrule{9-10} \cmidrule{12-13}  
+Run & & {Time (s)} & Distance & & {Time (s)} & Distance && {Time (s)} & Distance && {Time (s)} & Distance  \\ \midrule
+1   &&  111.4 & 13915 &&  110.5 & 13836  && 111.4 &  13713 && 110.8  & 14337 \\
+2   && 110.6 & 13283 && 111.7 & 13123  && 118.2 & 13826 &&  111.2  &  15050 \\
+3   && 110.3 & 13098 && 111.2 & 13062 && 112.2  & 14389 &&   108.2  &  14282       \\
+4   &&  110.5 & 14019 && 110.3 & 13127   &&  113.2     & 14643    &&  109.0   &  13664   \\
+5   &&  108.3 & 13750 && 109.5   & 13668  && 110.3&  13630    &&    109.9      &  14021   \\ \midrule\addlinespace
+Worst  &&  111.4 &  14019 () &&  111.7 & 13836 () && 118.2    & 14643 () &&  111.2    &  15050 ()   \\
+Average&& 110.2  &  13613 () && 110.6 &  13636 () && 113.1   &  14050 () && 109.8 & 14271 ()     \\
+Best   &&    108.3 & 13098  () && 109.5 &  13062  ()  && 110.3    &  13630 () && 108.2   & 13664  ()    \\
+\bottomrule
+\end{tabular}}
+\caption{TSP performance of mutation operators for path representation with EERX on \dataset{bcl380}.}
+\label{tab:mutation2_performance}
+\end{sidewaystable}
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%
+% 
+% \begin{sidewaystable}[hbpt]\centering
+% \footnotesize{
+% \begin{tabular} {ll Sl l Sl l Sl l Sl }
+% \toprule
+% && \multicolumn{2}{c}{simple inversion} && \multicolumn{2}{c}{inversion} && \multicolumn{2}{c}{exchange}  & & \multicolumn{2}{c}{insertion} \\  \cmidrule{3-4} \cmidrule{6-7} \cmidrule{9-10} \cmidrule{12-13}  
+% Run & & {Time (s)} & Distance & & {Time (s)} & Distance && {Time (s)} & Distance && {Time (s)} & Distance  \\ \midrule
+% 1   &&  111.4 & 13915 &&  110.5 & 13836  && 111.4 &  13713 && 110.8  & 14337 \\
+% 2   && 110.6 & 13283 && 111.7 & 13123  && 118.2 & 13826 &&  111.2  &  15050 \\
+% 3   && 110.3 & 13098 && 111.2 & 13062 && 112.2  & 14389 &&   108.2  &  14282       \\
+% 4   &&  110.5 & 14019 && 110.3 & 13127   &&  113.2     & 14643    &&  109.0   &  13664   \\
+% 5   &&  108.3 & 13750 && 109.5   & 13668  && 110.3&  13630    &&    109.9      &  14021   \\ \midrule\addlinespace
+% Worst  &&  8.9 &  17801 () && 8.9  & 17896 && 8.9 & 17896 () && 8.8     & 17726 ()   \\
+% Average&& 8.7  &  17495 () && 8.7 &  17447 () &&  8.8  &   17215 () && 8.7  & 17502 ()     \\
+% Best   &&    8.4 & 17259  () && 8.5 & 16386 ()  && 8.7    & 16596   () && 8.6   &  17150 ()    \\
+% \bottomrule
+% \end{tabular}}
+% \caption{TSP performance of path representation with xxx on \dataset{bcl380}. Mutation rate: 35\%.}
+% \label{tab:mutation3_performance}
+% \end{sidewaystable}
+

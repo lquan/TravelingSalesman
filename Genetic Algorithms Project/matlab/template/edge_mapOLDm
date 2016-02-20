@@ -1,0 +1,31 @@
+% calculates the edgemap given the different paths in paths
+% (path representation)
+% the output is given as a cell array indexed by the city into the neighbor
+% lists
+function edgemap = edge_map(paths)
+
+[m,n] = size(paths);
+edgemap = cell(n, 1);
+
+%we copy the first and last column for easy loop processing
+paths2 = [ paths(:,end) paths paths(:,1) ];
+%fill in the edge map
+for p=1:m
+    for q=2:n+1
+        curr = paths2(p,q);
+        %edgemap{curr} = [edgemap{curr}, paths2(p,q-1), paths2(p,q+1)];
+        
+        if (all(edgemap{curr} ~= paths2(p,q-1))) %only add if not contained yet
+            edgemap{curr} = [edgemap{curr} paths2(p,q-1)];
+        end
+        
+        if (all(edgemap{curr} ~= paths2(p,q+1)))
+            edgemap{curr} = [edgemap{curr} paths2(p,q+1)];
+        end
+    end
+end
+
+%filter out duplicates
+%edgemap = cellfun(@unique, edgemap, 'UniformOutput', false);
+
+end

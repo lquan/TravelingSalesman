@@ -1,0 +1,483 @@
+\documentclass[a4paper,english,11pt,]{scrartcl}
+\usepackage{mystyle}
+\usepackage{rotfloat}
+\title{Traveling Salesman Problem}
+\subtitle{Genetic Algorithms and Evolutionary Computing (|H08M3a|)}
+\author{Li Quan\and Wout Swinnen}
+%\subject{Verslag}
+\date{January 13, 2011}
+\bibliographystyle{abbrv}
+
+\begin{document}
+\maketitle
+
+%\begin{abstract}
+
+%\end{abstract}
+\small{
+\tableofcontents
+\listoffigures
+\listoftables
+}
+
+
+\clearpage
+
+\section{Introduction}
+In this project, some of the key concepts of solving combinatorial optimization problems with the use of genetic algorithms are explored. To be more precise, we will implement genetic operators and investigate their characteristics when applied to the traveling salesman problem (TSP). 
+
+
+\section{Traveling salesman problem}
+\subsection{Description}
+The TSP is the classic example of a route planning problem. The aim of the TSP is to find a route between cities that is as short as possible, where every city has to be visited once, and where the final city has to be the same one as the starting city. There are many more complicated forms of this TSP, e.g.,~\cite{affenzeller2009genetic,multiple_tsp,gutin2002traveling}, but these will not be discussed in this project.
+% 
+% \subsection{Genetic algorithm}
+% The genetic algorithm (GA) is an elegant solution to this problem, among many other problems. It is a concept that has grown over the last half century, which mimics the mechanisms of natural evolution and genetics as known from biology. Just like our genes, genetic algorithms tend to make sure the strongest solutions to a problem survive, and the weaker ones do not. To do so, it makes use of genetic operators such as crossover and mutation, and often also a selection process comes at hand. 
+
+\subsection{TSP representation}
+First, we will discuss how to represent a TSP tour. This will have an impact on the possible crossover and/or mutation operators and their performance.
+
+\subsubsection{Adjacency representation}
+% It is easily seen that by varying different solution parameters, the outcome of the genetic process will differ greatly. For example, when observing a natural evolution situation, the effects of population size on the genetic diversity among the animals is obvious. The same accounts for genetic algorithms, where the tweaking of the solution parameters is of utmost importance for acquiring strong results. 
+% By running the program repeatedly experimenting with different parameter values, many conclusions can be drawn by studying the population and its dynamics. Parameters that have great influence on the performance are for example the population size, the number of generations allowed, the mutation probability, the crossover probability and the percentage of elitism solutions kept (juist?). 
+% As for the size of the solutions population and the number of generations, it speaks for itself that increase of these parameters will improve the solution quality, but the computational effort will also increase with them. That’s why a compromise between these two should be found. A bigger population in each generation will allow more diversity within the population, and thus a wider spread among the search space, whereas a larger number of consecutive generations will allow a deeper search for locally optimal solutions. 
+% Crossover probability will also affect the wideness of the search for solutions. As crossover introduces disorder and makes great changes to the genotype of the individuals, a greater probability will boost the genetic diversity among the population. This will allow a more diffuse exploration of the search space, and the general optimum will more likely be found. However, when the probability of crossover gets too high, it will also inhibit a more profound search for local optima. This is opposed to mutation, which makes mere small changes to the genotype, and a greater probability of mutation will aid in local fitness optimization. 
+% Wat is die elite precies? Is het parent selection? Offspring selection?  Het is toch parent selection he? Anders heb ik beneden nog wat foutjes gezegd bij de selection operators.
+% It speaks for itself that the use of heuristics such as a loop detection method will generally improve performance.
+
+The adjacency representation describes a tour with a list of $n$ cities where city $j$ is listed in position $i$ if and only if the tour leads from city $i$ to city $j$. The adjacency representation allows schemata analysis, but it has many disadvantages. The use of normal crossover operators will very likely introduce illegal tours in the population, and they have to be complemented with repair operators. On the other hand, the use of crossover operators designed for the adjacency representation will generally lead to very poor results. 
+
+ %Because of its global poor performance, we will not discuss this representation to its full extent, and replace it with another, namely the path representation. 
+
+\subsubsection{Ordinal representation}
+When using the ordinal presentation, a tour is also represented as a list of $n$ cities; the $i$th element of the list is a number
+in the range from 1 to $n - i + 1$, and there an ordered list of cities serving as a reference point is also used. 
+
+The main advantage of this rather complicated ordinal representation lies in the fact that the classical crossover can be used. (This follows from the fact that the $i$th element of the tour representation is always a number in the range from 1 to $n -i + 1$.) The results obtained using ordinal representation however have been generally poor. 
+
+
+\subsubsection{Path representation}
+The most straightforward, natural representation for describing TSP tours is the path representation. In the path representation, once again a list of $n$ cities is used. In this list, the $j$th element with value $i$ denotes that the $j$th city to be visited is city $i$. Also in this case, the classical crossover operators will not be usable. 
+However using this representation, specific crossover operators have been designed that do give very good results.
+
+\subsection{Tasks}
+
+The main objective of this project is to investigate the performance of various GA operators and discuss possible improvements. 
+In particular, we change the original adjacency representation (with alternating edge crossover and simple inversion\footnote{In the original implementation this was somewhat confusingly named inversion mutation, which is a slightly more complicated variant.} mutation) to \emph{path representation} and implement appropriate operators. We implemented all crossover and mutation operators mentioned in \cite{affenzeller2009genetic} for the path representation. 
+
+More specifically, this consists of the following crossover operators: \emph{Partially Matched Crossover (PMX)}, \emph{Order Crossover (OX)}, \emph{Cyclic Crossover (CX)} and \emph{(Enhanced) Edge Recombination Crossover ((E)ERX)}; and the following mutation operators:  \emph{inversion}, \emph{exchange} and \emph{insertion} mutation. 
+
+As an optional task, we have chosen to analyze the selection processes of \emph{proportional (roulette wheel)} and \emph{tournament} selection. 
+
+These operators and processes will be tested by comparing solution speeds, minimal tour distances, genetic diversity, etc.
+Finally, we will also briefly compare with some alternative approaches to solve TSP problems.
+
+\subsection{Benchmark problems}
+In general, the optimal solution of TSP problems is not known a priori. However, to study the performance of the algorithms it is crucial to have several benchmark problems with a known optimal solution in order to establish a baseline.
+
+
+\begin{figure}[hbtp]
+\centering
+\subfloat[\dataset{belgiumtour} (?)]{\label{fig:belgiumtour}\includegraphics[width=0.32\textwidth]{belgiumtour}} \vspace{0.5cm}
+\subfloat[\dataset{bcl380} (564)]{\label{fig:bcl380}\includegraphics[width=0.32\textwidth]{bcl380}}                \vspace{0.5cm}
+\subfloat[\dataset{xqf131} (1621)]{\label{fig:xqf131}\includegraphics[width=0.32\textwidth]{xqf131}} 
+
+\subfloat[\dataset{xql662} (2513)]{\label{fig:xql662}\includegraphics[width=0.32\textwidth]{xql662}} \vspace{0.5cm}
+\subfloat[\dataset{rbx711} (3115)]{\label{fig:rbx711}\includegraphics[width=0.32\textwidth]{rbx711}} 
+\caption[The five benchmark problems.]{The five benchmark problems. In parentheses their optimal solutions are given.}
+\label{fig:datasets}
+\end{figure}
+
+The following experiments will therefore be based on 5 benchmark problems, shown in \autoref{fig:datasets}. In particular, these problems consist of respectively 131, 380, 662 and 711 nodes, and one with 41 nodes based on Belgium's most important cities. For all of these except for \dataset{belgiumtour}, we know the optimal solution.
+% \begin{table}[hbpt]
+% \centering 
+% \begin{tabular} {l r}
+% \toprule
+% name & optimal solution \\ \midrule
+% \dataset{belgiumtour}  & ?\\
+% \dataset{xqf131}  & 564\\
+% \dataset{bcl380}  & 1621\\
+% \dataset{xql662}  & 2513\\
+% \dataset{rbx711}  & 3115\\\bottomrule
+% \end{tabular}
+% \caption{Benchmark problems and their characteristics.\label{tab:best}}
+% \end{table}
+
+
+%  
+
+
+\section{Experiments}
+% The implementation of the genetic algorithm is not done from scratch, but is based on an existing \textsc{Matlab} GA toolbox accompanied with a graphical user interface and other functionalities relevant to the TSP problem.
+% 
+In this section, we will perform experiments to analyze the properties of the various operators for the genetic algorithms with respect to the TSP problem. First, we will investigate the crossover operators, followed by the mutation operators and finally the selection operators.
+
+
+We will measure the performance by running the genetic algorithm several times for each of the 5 benchmark problems. To be precise, we will run the algorithm 5 times for each problem, and record the computation time and solution quality of each run.  By repeatedly solving different problems, we will also get a measure of how much the applied operators depend on the problem size. And, because benchmark problems have been used, we can also express the quality of the best solution in a relative manner with respect to the global optimum solution. As a measure for this, we use the relative error, i.e., $\epsilon_\textnormal{rel} = \frac{|x_\textnormal{opt} - \hat{x}|}{x_\textnormal{opt}}$.
+
+All experiments were executed with \textsc{Matlab} version 2010b (Linux 64 bit version) on a laptop with an Intel Core i3-370M 2.4\,Ghz and 4\,GB RAM.
+
+\subsection{Crossover operators}
+\input{crossover_table}
+The parameters for the experiments concerning the crossover operators are as follows. Crossover operator with 90\% probability, simply inversion mutation with 10\% probability, 5\% elitism, stochastic uniform sampling for selection and no further applied heuristics. 
+The number of individuals in each generation is 50, and the algorithm is stopped after 100 generations. 
+(The crossover probability is set high so that the outcome of the algorithm is very much characterized by the respective applied crossover operator.)
+
+
+The results of the alternating edge crossover, partially matched crossover and order crossover operators are given in \autoref{tab:crossover}, and of the cycle crossover, edge recombination crossover and its enhanced variant in \autoref{tab:crossover2}.
+(The implementation of these crossover operators is found in Appendix~\ref{appendix:crossover} on \autopageref{appendix:crossover}.)
+\subsubsection{Alternating edge crossover}
+\paragraph{Description}
+The alternating edge crossover chooses an edge from the first
+parent at random. Then, the partial tour created in this way is extended
+with the appropriate edge of the second parent. This partial tour is
+extended by the adequate edge of the first parent, etc.
+
+%Performance comparison with others is not possible yet, but several remarks can already be made. For example,
+\paragraph{Results}
+It can be seen that the computation time does not increase linearly with the problem size.  The solutions drift away from the optimal solution as the problem size increases, because the amount of generations allowed becomes too limited to give good results. 
+% \input{xalt_table}
+
+We conclude that both the solving time and solution quality of this crossover operator are of very poor quality (as will be seen when compared to the other crossover operators). This is because the alternating edges crossover often destroys good subtours. 
+
+
+
+
+\subsubsection{Partially matched crossover}
+\paragraph{Description}
+The partially matched crossover (PMX) operator passes on ordering and value information
+from the parent tours to the offspring tours: A part of one parent's string
+is mapped onto a part of the other parent's string and the remaining
+information is exchanged.
+
+% The results of the PMX operator are given in \autoref{tab:pmx_performance}. 
+\paragraph{Results}
+We already see that this operator consistently gives better results than the alternating edge crossover operator. For computation time, we see a speedup with a factor of $\approxeq 4$; the solution quality is slightly better with roughly 20\%. We see the same issues with the scalability of the TSP sizes as before, only the solution time dependence on the problem size is much smaller in this case. 
+
+The PMX operator therefore tries to keep the positions of the cities in
+the path representation; these are rather irrelevant in the context of the
+TSP problem where the most important goal is to keep the sequences.
+Thus, the performance of this operator for the TSP is rather poor, as shown by the solution quality on the benchmark problems.
+
+
+% \input{pmx_table}
+% 
+\subsubsection{Order crossover}
+\paragraph{Description}
+The order crossover (OX1) operator constructs an offspring by choosing a subtour of one parent preserving
+the relative order of the other parent. 
+
+
+\paragraph{Results}
+% The results of the OX1 operator are given in \autoref{tab:ox_performance}. 
+The solution quality of OX1 is better than PMX for all benchmark problems. But more importantly, we see that (this particular implementation of) the operator scales very well with the problem size in terms of computational complexity. 
+
+The solution quality is high because it employs the essential property of the path representation, that the order of cities is important and not their position. Its computational complexity is low because the algorithm is very simple. Overall, this is an operator with a good trade-off between solution quality and computational complexity.
+% \input{ox_table}
+
+\subsubsection{Cycle crossover}
+
+\paragraph{Description}
+The cyclic crossover (CX) operator attempts to create an offspring from the parents where every position is
+occupied by a corresponding element from one of the parents.
+
+% The results of the CX operator are given in \autoref{tab:cx_performance}.
+
+\paragraph{Results}
+This operator is somewhat slower than the order crossover and the solution quality is worse than PMX (but still better than AEX). This operator is thus not really interesting because it performs mediocre without any benefits.
+
+In \cite{Oliver}, it was concluded from theoretical and empirical results
+that the CX operator gave slightly better results than the PMX operator. 
+In our experiments we did not see this result.
+
+However our basic assumption that in the context of the TSP it is much more
+important to keep sequences rather than positions, is fortified, as we see that OX is definitely better than PMX and CX.
+
+% \input{cx_table}
+
+\subsubsection{(Enhanced) edge recombination crossover}
+\paragraph{Description}
+Even if the main aim of the OX operator is to keep the sequence of at
+least one parent there are still quite a lot of new edges in the offspring.
+
+The edge recombination operator (ERX) has been designed with the
+objective of keeping as many edges defined by the parents as possible.
+
+As common sequences of the parent tours are not taken into account by
+the ERX operator an enhancement, the enhanced
+edge recombination crossover (EERX) has been proposed.
+
+The EERX additionally gives priority to those edges starting from the
+current city which are present in both parents.
+
+\paragraph{Results}
+
+% The results of the ERX operator are given in \autoref{tab:erx_performance} and of the EERX operator in \autoref{tab:eerx_performance}. 
+The solution quality of these operators is undoubtly the best. It is clear that by keeping as many edges defined by the parents as possible, these operators give very good solutions, but the drawback is that these operators need a very complex and time consuming procedure.
+
+We can also see the improvement of EERX in solution quality versus ERX by sacrificing a relative small amount of computation time.
+% \input{erx_table}
+
+% \input{eerx_table}
+
+
+
+% \clearpage
+\subsection{Mutation operators}
+The parameters for the experiments concerning the mutation operators are as follows. Crossover operator with 10\% probability, mutation operator with 90\% probability, 5\% elitism, stochastic uniform sampling for selection and no further applied heuristics. The number of individuals in each generation is 50, and the algorithm is stopped after 100 generations. 
+(The mutation probability is set high so that the outcome of the algorithm is very much characterized by the respective applied mutation operator.)
+
+The results of the simple inversion, inversion, exchange and insertion mutation operators are given in \autoref{tab:mutation}.
+(The implementation of these mutation operators is found in Appendix~\ref{appendix:mutation} on \autopageref{appendix:mutation}.)
+% 
+% We fixed the crossover operator to OX1 and EERX because they gave the most interesting results in terms of time complexity and solution quality as shown in the previous section. We only performed the experiments on \dataset{bcl380} because of time and space constraints. 
+% % The results are shown in respectively \autoref{tab:mutation1_performance} and \autoref{tab:mutation2_performance}.
+
+\input{mutation_table}
+
+\subsubsection{Simple inversion mutation}
+\paragraph{Description}
+
+% The results of the simple inversion operator are given in \autoref{tab:simple_inversion_performance}. 
+% \input{simple_inversion_table}
+
+The simple inversion mutation operator randomly selects two cut points and simply reverses the string between them.
+
+\paragraph{Results}
+We cannot yet compare with the other mutation operators, but we can already compare with the results of the OX1 results in \autoref{tab:crossover}, where the same parameters were used except for a higher crossover rate and lower mutation rate.   
+
+The solution distances now are significantly worse. This is definitely because of the low crossover probability, which inhibits a decent exploration of the search space. Also, we can already predict that the type of mutation operator will not influence the results as much as the type of crossover operator used. This is a straightforward result, since the differences in implementation of the crossover operators are way more pronounced, and thus affect the efficiency of the search space exploration in a profound manner. The same does not hold for the mutation operators, for which these small differences in implementation do not have a strong effect on the way the search space is exploited. Also, for the crossover operators it is way easier to counteract the building block theory and destroy relevant alleles. Mutation operators only introduce small changes, and do not threaten the genetic building blocks as much.    
+
+\subsubsection{Inversion mutation}
+% The results of the inversion operator are given in \autoref{tab:inversion_performance}. 
+% \input{inversion_table}
+\paragraph{Description}
+The inversion mutation operator randomly selects a subtour, removes it, and inserts it in reverse order at a randomly chosen position.
+
+\paragraph{Results}
+This mutation operator requires slightly more calculation time than the previous operator. This is due to the fact that calculation of one extra random position has to be done and the insertion of the subtour in the result.
+For the solution quality, we see no significant differences.
+
+
+
+
+\subsubsection{Insertion mutation}
+% The results of the insertion operator are given in \autoref{tab:insertion_performance}. 
+% \input{insertion_table}
+\paragraph{Description}
+The insertion mutation operator randomly chooses a city, removes it from the tour and inserts it at a randomly selected place. 
+
+
+
+\paragraph{Results}
+Also for the insertion mutation, we see no substantial improvements in solution quality. As for the time cost, it is on the same order as the inversion mutation.
+
+
+\subsubsection{Exchange mutation}
+% The results of the exchange operator are given in \autoref{tab:exchange_performance}. 
+% \input{exchange_table}
+\paragraph{Description}
+The exchange mutation operator selects two cities of the tour randomly and simply exchanges them. 
+
+
+\paragraph{Results}
+This operator has the same performance as the insertion and inversion mutation.
+
+% 
+% \subsubsection{Overview}
+% As mentioned in \autoref{sec:tasks} we discuss following mutation operators \cite{affenzeller2009genetic}:
+% \begin{description}
+%  \item[Simple inversion] The simple inversion mutation operator randomly selects two cut points and simply reverses the string between them.
+%  \item[Inversion] The inversion mutation operator randomly selects a subtour, removes it, and inserts it in reverse order at a randomly chosen position.
+%  \item[Exchange] The exchange mutation operator selects two cities of the tour randomly and simply exchanges them. 
+%  \item[Insertion] The insertion mutation operator randomly chooses a city, removes it from the tour and inserts it at a randomly selected place. 
+% \end{description}
+
+
+% \subsubsection{Experiments}
+
+
+
+
+
+% \subsubsection{Results}
+% All the mutation operators performed nearly equally: there is no significant difference in terms of solution quality nor time complexity, neither in combination with OX or EERX crossover. In terms of ease of implementation, one could argue that the exchange mutation is the easiest, followed by insertion and then simple inversion and inversion. However \textsc{Matlab} makes all these mutation operators very easy and efficient to implement. 
+% 
+% So in conclusion, the choice of the mutation operator is much less important than the crossover operator for the TSP problem.
+
+
+
+\subsection{Selection operators}
+
+The selection operators implemented are stochastic uniform sampling, which was already given in the toolbox and used, a roulette wheel selection (which was also part of the toolbox) and a tournament selection. %All of these are parent selection operators. 
+%Nog een klein beetje uitleg over selective pressure, genetische diversiteit, hoe de %elite omhoogdoen voor snelle premature convergence kan zorgen).
+For the experiments we use OX1 crossover with 90\% probability, simple inversion mutation with 10\% probability, and 20\% elitism, and 100 consecutive generations with 50 individuals each. No extra heuristics were applied.  
+
+The results of all selection operators are given in \autoref{tab:sus}. (The implementation of these selection operators is found in Appendix~\ref{appendix:selection} on \autopageref{appendix:selection}.)
+\subsubsection{Stochastic uniform sampling}
+\paragraph{Description}
+The stochastic uniform sampling is the parent selection technique that was already given in the \textsc{Matlab} toolbox and originally used. 
+This sampling technique provides zero bias and minimum spread. The individuals are mapped to contiguous segments of a line, such that each individual's segment is equal in size to its fitness exactly as in roulette-wheel selection (see further). Here equally spaced pointers are placed over the line as many as there are individuals to be selected.
+
+\input{sus_table}
+%Hier zou ik toch nog wat schrijven over de werking van SUS (ook omdat er geen code is), en wat het verschil is met gewoon willekeurige individuen selecteren (zoals de vraag was bij de presentatie). Hier heb ik echter geen idee van.  
+
+\paragraph{Results}
+We can compare with \autoref{tab:crossover}, where the same parameters and operators were used, except for the lower elitism percentage of 5\%. We see that increasing the elitism rate gives rise to longer calculation times. The quality of the solutions does not improve by this boost of elitism from 5 to 20\%. 
+%Als stochastic uniform sampling meer bewerkingen vereist dan gewoon willekeurige individuen selecteren als parents, dan kunnen we dit vermelden. Ik weet echter wel niets van deze selection operator en zijn implementatie. 
+
+
+\subsubsection{Roulette wheel selection}
+\paragraph{Description}
+The simplest selection scheme is roulette wheel selection, also called stochastic sampling with replacement. This is a stochastic algorithm and involves the following technique. The individuals are mapped to contiguous segments of a line, such that each individual's segment is equal in size to its fitness. A random number is generated and the individual whose segment spans the random number is selected. The process is repeated until the desired number of individuals is obtained (called mating population). This technique is analogous to a roulette wheel with each slice proportional in size to the fitness. 
+\paragraph{Results}
+There is no real difference in time cost for this operator when compared to the stochastic uniform sampling. Also, the quality of the solutions is slightly worse. The reason is that stochastic uniform sampling ensures a selection of offspring which is closer to what is ``deserved'' (concerning the fitness function) than roulette wheel selection.
+
+% The second data point for the 41-cities problem, is an example of a premature convergence of the genetic algorithm. The chance of this happening is increased by raising the elitism parameter, since genetic diversity is suppressed. 
+
+% \input{rws_table}
+
+
+\subsubsection{Tournament selection}
+\paragraph{Description}
+In tournament selection a number of individuals ($K$) is chosen randomly from the population and the best individual from this group is selected as parent. This process is repeated as often as individuals must be chosen. These selected parents produce uniform at random offspring.
+
+\paragraph{Results}
+Since tournament selection also requires the definition of the variable $K$ (size of the tournament subpopulation), we have chosen a value of 10\% of the population size (i.e., in these experiments $K=5$). Also, when running the algorithm for different mutation rates, we noticed that the tournament selection attained better results when the mutation rate was made larger. This was not the case for the two previous selection operators. Optimal results with tournament selection were attained when mutation rate was set to approximately 35\%. 
+
+% \input{tournament_table}
+
+
+This is probably due to the character of the tournament selection. When mutation is boosted, the search space is exploited more efficiently at first. However, when mutation rates get too high, it becomes too difficult to preserve relevant building blocks in the genetic code. Tournament selection tends to buffer this effect, since winners are chosen from many different randomly chosen subpopulations, which provides a greater genetic diversity in the selected parents. This decreases the chance that the relevant and valuable building blocks die out.
+
+We can see that running the algorithm has become more cost-expensive with respect to the two previous cases. This is a result of the higher mutation rate, and the increased number of applied mutation operators. We can also see that indeed the quality of the solutions is slightly better than in the two previous cases, due to the cooperation of mutation and tournament selection. 
+
+
+\subsection{Comparison with other techniques}
+There are of course many other techniques to solve TSP problems and combinatorial problems in general.
+Among those, we will discuss the nearest neighbor and simulated annealing algorithms.
+
+The results of these alternative methods are shown in \autoref{tab:other} on \autopageref{tab:other}.
+\input{other_table}
+\subsubsection{Nearest neighbor heuristic}
+\paragraph{Description}
+The nearest neighbor algorithm is a typical representative of
+a route building heuristics. It simply considers a city as its starting point
+and takes the nearest city in order to build up the path. 
+
+
+\paragraph{Results}
+This approach gives very fast and good solutions. The most important drawback is that although this strategy works out quite well in the beginning of the path construction, adverse stretches have to be inserted when only a few cities are left. This is illustrated in \autoref{fig:bcl380_nn}.
+
+\begin{figure}[hbpt]
+\centering
+\includegraphics[width=0.5\textwidth]{bcl380_nn}
+\caption[The nearest neighbor heuristic on \dataset{bcl380}.]{The nearest neighbor heuristic on \dataset{bcl380} shows it limitations: while overall a very good TSP solution, there are a few adverse stretches (built at the end of the construction of the path).}
+\label{fig:bcl380_nn}
+\end{figure}
+
+\subsubsection{Simulated annealing}
+\paragraph{Description}
+Simulated annealing~\cite{simulatedannealing} (SA) is a generic probabilistic metaheuristic for the global optimization problem of locating a good approximation to the global optimum of a given function in a large search space. 
+Wikipedia~\cite{sawiki} gives following description:
+\begin{quote}
+The name and inspiration come from annealing in metallurgy, a technique involving heating and controlled cooling of a material to increase the size of its crystals and reduce their defects. The heat causes the atoms to become unstuck from their initial positions (a local minimum of the internal energy) and wander randomly through states of higher energy; the slow cooling gives them more chances of finding configurations with lower internal energy than the initial one.
+
+By analogy with this physical process, each step of the SA algorithm attempts to replace the current solution by a random solution (chosen according to a candidate distribution, often constructed to sample from solutions near the current solution). The new solution may then be accepted with a probability that depends both on the difference between the corresponding function values and also on a global parameter $T$ (called the temperature), that is gradually decreased during the process. The dependency is such that the choice between the previous and current solution is almost random when $T$ is large, but increasingly selects the better or ``downhill'' solution (for a minimization problem) as $T$ goes to zero. The allowance for ``uphill'' moves potentially saves the method from becoming stuck at local optima-which are the bane of greedier methods. 
+\end{quote}
+
+
+We initialized the TSP path for the simulated annealing algorithm\footnote{We used the simulated annealing toolbox found at \textsc{Matlab} File Exchange, \url{http://www.mathworks.com/matlabcentral/fileexchange/10548}.} with either a random path or one attained by the NN heuristic.  For neighborhood candidate solution generation, we simply used the exchange mutation operator. The initial temperature was 1, the cooling schedule was set so the temperature decreases with a factor $\beta=0.9$. Maximum consecutive rejections was set to 2500 and maximum tries to 500.
+                              
+\paragraph{Results}
+Overall, we see very good results both solution quality wise as computational complexity wise. In general these algorithms require less parameters to set. The use of an path obtained by the NN heuristic as a initial solution for the simulated annealing algorithm does not result in significantly better solutions in the same parameter settings.
+
+\clearpage
+\section{Conclusion}
+For the crossover operators, our results give the following hierarchies in performance: when considering speed, OX is definitely the fastest, followed by CX, and then PMX. The slowest are by far the powerful ERX and its even slower version EERX. 
+When considering only the quality of the best solutions for the same number of allowed generations, the best crossover operators are clearly EERX and ERX. Next in order is the fast subtour preserving OX, followed by the position preserving PMX and CX. 
+Overall, OX1 gives a good trade-off between solution quality and computational complexity.
+%The hybrid crossover seems to perform averagely with respect to all the available crossover operators. 
+
+Within the mutation operators, there were no real differences in solution quality nor time complexity. 
+All four operators performed more or less the same. This shows that the choice of mutation operator is overall less important than the choice of the crossover operator.
+% The results were more or less the same. When considering the computational speed however, we could deduce that the exchange mutation was the fastest operator, followed by the simple inversion, and next the slightly slower inversion which needs to calculate one extra pseudorandom number, and at last the slowest insertion mutation. 
+%Again, the hybrid crossover is an average of the available operators.  
+
+% The comparison of the three different selection operators also led to several conclusions. 
+When comparing purely the selection operator, the differences in performance were again not very distinct. We could only see that the tournament selection operator works slightly slower than the stochastic uniform sampling and the proportional selection, which work at more or less the same speed. If we compared only the different selection operators, also no differences in solution quality came to view. However, the tournament selection seems to outperform the other operators when working in a high mutation environment. 
+
+Considering the available crossover operators and mutation operators, it is very clear that the path representation is a massive improvement with respect to the adjacency representation. It is a more natural way of representing the phenotype of the tour, it allows crossover operators that have way better computational speeds, and it also allows operators that provide solutions that are much closer to the globally optimal solution. The path representation clearly outperforms the adjacency representation for the TSP problem. 
+
+Comparing genetic algorithms with other approaches such as simulated annealing resulted in following interesting conclusion. In general, other heuristics such as SA or NN were easier to use and gave better solutions in less time.
+
+
+\clearpage
+\appendix
+\section{\textsc{Matlab} code}
+\label{sec:code}
+\subsection{Crossover operators}
+\label{appendix:crossover}
+\subsubsection{PMX}
+\lstinputlisting[firstline=32]{../../matlab/template/PMX_crossover.m}
+
+
+\subsubsection{OX}
+\lstinputlisting[firstline=30]{../../matlab/template/OX_crossover.m} 
+
+\subsubsection{CX}
+\lstinputlisting[firstline=29]{../../matlab/template/CX_crossover.m} 
+
+\subsubsection{(E)ERX}
+\lstinputlisting{../../matlab/template/edge_map.m} 
+\lstinputlisting[firstline=29]{../../matlab/template/ERX_crossover.m} 
+\lstinputlisting[firstline=29]{../../matlab/template/EERX_crossover.m} 
+
+
+
+
+\subsection{Mutation operators} 
+\label{appendix:mutation}
+\subsubsection{Simple inversion}
+\lstinputlisting[firstline=3]{../../matlab/template/simple_inversion.m} 
+
+\subsubsection{Inversion}
+\lstinputlisting[firstline=3]{../../matlab/template/inversion.m} 
+
+\subsubsection{Insertion}
+\lstinputlisting[firstline=3]{../../matlab/template/insertion.m} 
+
+\subsubsection{Exchange}
+\lstinputlisting[firstline=5]{../../matlab/template/exchange.m} 
+
+
+
+\clearpage
+\subsection{Selection operators} 
+\label{appendix:selection}
+
+\subsubsection{Tournament selection}
+\lstinputlisting[firstline=2]{../../matlab/template/tournament_selection.m} 
+
+
+\subsection{Other algorithms}
+\subsubsection{Objective function}
+\lstinputlisting[firstline=11]{../../matlab/template/tspfun.m} 
+\subsubsection{Nearest neighbor heuristic}
+\lstinputlisting{../../matlab/template/nn_heuristic.m} 
+
+\clearpage
+
+%% Define a new 'leo' style for the package that will use a smaller font.
+\makeatletter
+\def\url@leostyle{%
+  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}}
+\makeatother
+%% Now actually use the newly defined style.
+\urlstyle{leo}
+
+\bibliography{biblio}
+
+
+\end{document}
+

@@ -1,0 +1,25 @@
+\begin{sidewaystable}[hbpt]\centering
+\footnotesize{
+\begin{tabular} {l l l  l l l l ll l l l l l l l}
+\toprule
+&& \multicolumn{2}{c}{\dataset{belgiumtour}} && \multicolumn{2}{c}{\dataset{xqf131}} && \multicolumn{2}{c}{\dataset{bcl380}}  & &\multicolumn{2}{c}{\dataset{xql662}} && \multicolumn{2}{c}{\dataset{rbx711}} \\  \cmidrule{3-4} \cmidrule{6-7} \cmidrule{9-10} \cmidrule{12-13}   \cmidrule{15-16}  
+Run & & Time (s) & Distance & & Time (s) & Distance && Time (s) & Distance && Time (s) & Distance && Time (s) & Distance \\ \midrule
+1   &&  9.9 & 889 && 18.4 & 1824  &&  119.3 & 13298  && 272.8 & 23010 && 288.0 & 33963 \\
+2   &&  10.0 & 926 && 18.8 & 1537  && 118.7 & 14512 && 277.7 & 22584 &&   289.0 & 34295    \\
+3   &&  9.9 & 1021 && 18.9 & 1716 &&  120.4 & 13190 &&  264.3    & 22552  && 288.8   & 32114      \\
+4   &&  10.6 & 971 && 18.7 & 1619  && 110.0     &  14352       && 269.4  & 23115 &&  &   \\
+5   &&  10.0 & 979 && 18.8 & 1666  && 108.9       &  14826    && 265.3  & 22918  &&     &    \\ \midrule\addlinespace
+Worst  &&  10.6 & 1021 (?) && 18.9 & 1824 () &&   &   () &&    &   () &&   &   ()  \\
+Average&&  10.1 & 957 (?) && 18.7 & 1683 () &&   &   () &&   &   () &&   &   ()    \\
+Best   && 9.9 & 889 (?) && 18.4 & 1573 ()  &&   &   ()&&   &   () &&   &   ()     \\
+\bottomrule
+\end{tabular}}
+\caption{TSP performance of path representation with ERX. }
+\label{tab:erx_performance}
+\end{sidewaystable}
+% 
+% \dataset{xqf131}  && 564\\
+% \dataset{bcl380}  && 1621\\
+% \dataset{xql662}  && 2513\\
+% \dataset{rbx711}  && 3115\\
+% \dataset{belgiumtour}  && ?\\
